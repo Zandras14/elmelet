@@ -1,0 +1,32 @@
+__DNS__
+
+
+__URL__
+  ftp://ftp.bme.hu
+   |   |    |
+szabvány|sep|domain
+
+
+domain = tartománynév
+\-books.google.hu
+   \      \	\- top-level domain(felső szintű tartománynév)
+    \	   \- domain(fő tartománynév)
+     \- sub-domain(al tartománynév)
+	  \- lehet még sub-domain-ja (pl. ftp.iit.uni-miskolc.hu)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
