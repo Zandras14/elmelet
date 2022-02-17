@@ -1,4 +1,4 @@
-__DNS__
+___DNS___
 
 
 __URL__
@@ -13,20 +13,252 @@ domain = tartománynév
     \	   \- domain(fő tartománynév)
      \- sub-domain(al tartománynév)
 	  \- lehet még sub-domain-ja (pl. ftp.iit.uni-miskolc.hu)
+	\- sub-domain lehet gépnév is
 
 
+_hosts fájl_
+
+c:\Windows\System32\drivers\etc\hosts\
+
+egy hosts fájl
+195.199.200.48	jupiter.zold.and
 
 
+__DNS__
+
+\- Domain név és IP cím összerendelése
+ | - szit.hu - domain
+ \ - 87.228.73.160 - IP cím
+
+DNS - Doamin Name System
+	
+    - Hierasztikus osztott adatbázis 
+
+Jellemzők:
+	-Osztott név adatbázis
+	-Osztott, hierasztikus adatbázis
+
+	-Névszerverek százezrei
+	-Nevek millió
+
+	-Gondoltak a redundanciára és a hibatűrésre is
+
+	-Legfontosabb feladatai
+	 -Név IP cím összerendelés felodáas
+	-Egy sor más információt szolgáltat
+
+Feladatuk ált.:
+	-A nevek feloldása hálózatikommunikációval történik
+	-Kettős feladat (mint a közúti-közlekedésven):
+		-Látni
+		-Láttatni
+
+Top-level:
+	- ISO-3166-1 szabvány
+	- .gov - kormányzati
+	- .edu - okatatás Amerikában
+	- .org - non-profit szervezetek
+	- .net - hálózati szervezetek
+	- .mil - katonai szervezetek
+	- .arpa - inverz zóna és a régi Arpanet egyes részei 
 
 
+Zóna:
+	- a név-fa zónákra oszlik
+	- egy zóna a fa egyben kezelt része (pl. az összes TLD-t kezelő root)
+	- egy zónaaz illetékes szerveren általában egy fájl
+
+Illetékesség:
+	- Autoritatív
+	- A szerver illetékes egy név dolgában
+
+Elsődleges - másdolagos:
+	-elsődeges szerver
+		-zóna adminja változtatja
+
+	-másodlagos szerver
+		-tükrözzük az elsődlegesről
+
+Delegálás:
+	- a zóna egyes darabjainak kezelését más szerverekre bízzuk
+
+	      +----------------------------+
+	      |   	/- ezt mi kezeljük |
+	      |   barat.zold.hu            |
+              |	    \- másra bízzuk        |
+	      +----------------------------+
+
+Több szintő névmegadás:
+	- többszintő névmegadás delegással lehetséges
+	
+	- de nem feltétel
+
+	- maganak is hozhatok létre olayn domaineket amilyek pontot tartalmaznak:
+		-osztaly.intezet.hu
+
+	+---------------+
+	| baratzold.hu  | ROSSZ
+	+---------------+
+
+	+---------------+
+	| barat.zold.hu | JÓ
+	+---------------+
+
+FQDN:
+	- Fully Qualifield Domain Name
+
+	+---------------+
+	| wikipedia.org |
+	+---+-----------+
+	    | hu domain | <-- A hu domain a wikipeida.org altartoány neve
+	    +-----------+
+
+	+------------------+
+	| hu.wikipedia.org | <-- FQDN
+	+------------------+
+
+Domain név megadása:
+	- andol ábécé [a-z]
+	- számjegyek [0-9]
+	- kötőjel [-]
+
+	+------------------------------------------+
+	| Aláhúzás nem lehet a domain névben ( _ ) | 
+	+------------------------------------------+
+
+Inverz feloldás (reverz):
+	- IP címből domain név feloldás
+
+			  +-----------------+	
+			  | Így vezetjük be | 	
+			  +-----------------+
+	+--------------+	||
+	| 192.166.85.2 | 	||
+	+--------------+	\/
+	+---------------------------+
+	| 2.85.166.195.in-addr.arpa | 
+	+---------------------------+
+
+DNS szerverek felosztása:
+	- illetékes
+	- nem illetkés 
+	   -gyorstárazás
+
+Cache - TTL:
+	- TTL - Time To Live
+	- gyorstárban meddig maradjon meg egy név
+	- másodpercben megadott érték
+
+Lame delegálás:
+	- delegálunk egy nevet
+	- az ottani admin nem állítja be
+
+DNS adatbázis rekordjai:
+
+	+------------------------------------+
+	| - SOA - Start Of Authority	     |
+	| - A - Address (ipv4)		     |
+	| - AAAA - Address (ipv6)  	     |
+	| - NS - Name Server		     |
+	| - Glue rekord - speciális A rekord |
+	| - CNAME - Canonical NAME	     |
+	| - MX - Mail eXchanger		     |
+	| - TXT - TeXT			     |
+	| - HINFO - Hardware INFOrmaion	     |
+	| - PTR - PoinTeR		     |
+	+------------------------------------+
+	
+	\- SOA:
+	   - Start Of Authority
+	   - zóna kezdő rekord 
+	   - megadja egy zónára vonatkozó közös információt
+
+	   \- SOA példa:
+						   /- emailcím
+		zold.and. SOAiskolazo.zold.and. hostmaster.zold.and. (
+			1999093001;szériaszám - Serial nr.
+			86400;frissíts gyakorisága - Refresh
+			1800;újrapróblákozás - Retry
+			604800;lejár - Expire
+			43200);meddig mondjuk elérhetelenek
+			      ;NXDOMAIN 
+	  
+	  \- A rekord:
+		
+		- Domainnév + IP cím
+
+		  pandora.bme.hu. A 192.199.17.8  |(pandora.bme.hu.) <-FQDN
+
+		  pandora A 192.199.17.8
 
 
+	  \- AAAA rekord:
+		
+		- Domainnév + IP cím
+
+		  edu.zold.and. AAAA 2001:db8:def:a::1
+
+	  \- NS rekord:
+		
+		  NS ns1.zold.and.
+		  NS ns2.zold.and.
+
+			\ Mamár kötelező két névszerver megadása!
+
+	  \- Glue rekord:
+		
+		- Valójában A vagy AAAA rekord
+		- Glue rekord - Idegen (ragadvány) A rekord
+		- A delegált zóna névszervere az adott zónában van
+		- A gep.osztaly.valami.hu -nak saját DNS szervere van,
+		  mégis meg kll adni ezt feljebb a valami.hu zónában is!
+
+			gep.osztaly A 195.166.12.1
+
+	  \- CNAME:
+		
+		- becenevek
+
+		  	www CNAME gep	
+		  	www.valahol.hu
+
+	  \- MX rekord:
+		
+		- A domainbe érkező levelekt fogadó szerver címe
+
+		  	MX 10 mail.zold.hu.	
+		  	MX 20 mail2.zold.hu.
+
+	  \- HINFO rekord:
+		
+		- Hardverről szokás (lehetne szokás, nem szokás) írni ide információkat
+
+	  \- PTR rekord:
+		
+		- Az inverz zónákat állítjuk be a PTR rekord segítségével
+		- Cím név feloldásra -> iverz feloldás
+		- Az in-addr.arpa domain alá tartozó ág szolgálja a IP címek feloldását
+		- Pl: 8.2.166.195.in-addr.arpa. PTR valami.hu.
+		- Pl: 4.5.168.192.in-addr.arpa. PTR zold.and.
 
 
+Domaint akarunk magunknak:
 
+	- Meg kell nézünk nem használja-e valaki már a kívánt domain nevet
+		- Ehhez használjuk a következő oldalt: http://domain.hu
+	- Slave szerver szolgáltatót keresünk
+	- Regisztrátort keresünk
+	- Ha mastert mi szolgáltatjuk? beállítjuk a szerverünkön
+	- Várakozási lista -> 2 hét
+	- Ha nincs Slave szerver a regisztrátor nem csinálja neg a delegálást
+	- Ezek csak .hu domain esetén!
 
-
-
-
+DNS szerver programok:
+	
+	- BIND - Named
+	- mydns - mysql
+	- mydns - pgsql
+	- pdns - server
+nslookup -querytype=mx .com
 
 

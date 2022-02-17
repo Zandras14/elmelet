@@ -1,0 +1,92 @@
+! R0 router
+enable
+  conf t
+  hostname R0
+    interface s0/0/0
+      ip address 200.1.1.1 255.255.255.252
+      desc R1 fele
+      no shutdown
+      exit
+    router ospf 100
+      network 200.1.1.0 0.0.0.3 area 0
+      end
+      
+
+! R1 router
+enable
+  conf t
+  hostname R1
+    interface s0/0/0
+      ip address 200.1.1.2 255.255.255.252
+      desc R0 fele
+      no shutdown
+      exit
+      interface s0/0/1
+      ip address 200.1.1.5 255.255.255.252
+      desc R2 fele
+      no shutdown
+      exit
+    router ospf 100
+      network 200.1.1.0 0.0.0.3 area 0
+      network 200.1.1.4 0.0.0.3 area 0
+      end
+
+
+! R2 router
+enable
+  conf t
+  hostname R2
+    interface s0/0/1
+      ip address 200.1.1.6 255.255.255.252
+      desc R1 fele
+      no shutdown
+      exit
+      interface s0/0/0
+      ip address 200.1.1.9 255.255.255.252
+      desc R3 fele
+      no shutdown
+        exit
+    router ospf 100
+      network 200.1.1.4 0.0.0.3 area 0
+      network 200.1.1.8 0.0.0.3 area 0
+      end
+
+! R3 router
+enable
+  conf t
+  hostname R3
+    interface s0/0/0
+      ip address 200.1.1.10 255.255.255.252
+      desc R2 fele
+      no shutdown
+      exit
+      interface g0/0
+      ip address 200.1.1.13 255.255.255.252
+      desc R4 fele
+      no shutdown
+        exit
+    router ospf 100
+      network 200.1.1.8 0.0.0.3 area 0
+      network 200.1.1.12 0.0.0.3 area 0
+      end
+
+! R4 router
+enable
+  conf t
+  hostname R4
+    interface g0/0
+      ip address 200.1.1.14 255.255.255.252
+      desc R3 fele
+      no shutdown
+      exit
+    router ospf 100
+      network 200.1.1.12 0.0.0.3 area 0
+      passive-interface g0/1
+      end
+  
+! R4 ideignelen parancsok
+enable
+  conf t
+    router ospf 100
+      passive-interface g0/1
+      end

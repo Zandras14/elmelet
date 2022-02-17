@@ -1,0 +1,86 @@
+adat != információ	fizikai>adatkapcsolati>álózati>szállítási>viszony>megjelenítési>alkamazási
+
+köznyelvben ==
+
+technológi adat másik nem
+
+informatika != adatfeldolgozás (is)
+
+multi/broad/unicast
+
+Erp vagy eerp (dunno) funfact
+
+architektura nem csak szoft
+
+kapcsolatban vannak
+
+h.ar nem része az op.rend
+
+Vonal és csomagkapcsolt
+
+forgalom szervezésre van szükség
+
+csoamgkapcsolt sorbarak
+
+csoamgkapcsolt tárol továbbít
+
+realtime vonalk.
+
+osi elméltei
+
+adatkapcsolat hibakezel igaz
+
+konverzió igaz
+
+osi hálózati mech hamis
+
+tcp/ip gyakorlati
+
+tcp/ip van titkosítás
+
+nem a fizikai rétegben van titkosítás
+
+Wlan > mb 1
+
+adat kapcsolati réteg javítja a hibát
+
+keretek / blockok
+
+bitsértés adatkapcsolatban
+
+keteket jelző bájtokkal határolja
+
+bit/karater beszúrás nem ugyan az
+
+karakter egy 1 bit 
+
+adat. marhaság
+
+5 db 0 egy 1 szúrnak be
+
+crc
+
+mac alréteg full igaz
+
+ALOHA egyszerő bármikor
+	réselt csak néha 
+	a többi hamis
+
+csma/cd != csma/ca
+detektálás	avoid
+
+ping = elérhető
+
+
+
+
+
+
+
+
+
+
+
+
+
+
